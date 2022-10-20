@@ -55,7 +55,7 @@ int main(int argc, char *argv[]){
     set_nonblocking(server_sock);
     while(1){
         int event_cnt = epoll_wait(epfd, ep_events, EPOLL_SIZE, -1);
-        printf("return epoll_wait\n");
+        // printf("return epoll_wait\n");
         if(event_cnt == -1) {
             error_handling("error epoll wait\n");
         }
@@ -82,7 +82,6 @@ int main(int argc, char *argv[]){
                         }
                     } else {
                         message[str_len] = '\0';
-                        printf("event_cnt: %d i: %d\n", event_cnt, i);
                         printf("recv: %s\n", message);
                         write(ep_events[i].data.fd, message, str_len);
                     }
