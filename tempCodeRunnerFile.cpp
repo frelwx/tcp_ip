@@ -1,1 +1,2 @@
-struct
+class A{};
+// static A tmp;

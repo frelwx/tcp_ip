@@ -1,17 +1,21 @@
-#include<cstdio>
-#include<iostream>
-#include<arpa/inet.h>
-#include<string.h>
+#include<bits/stdc++.h>
 using namespace std;
-struct S { int f1, f2; }; 
+class singleton {
+private:
+   singleton() {}; // 构造函数私有，无法通过getinstance之外的方法构造对象
+   singleton(const singleton& other)=delete; //禁用拷贝构造
+public:
+   static singleton& get_instance() {
+      static singleton tmp;
+      return tmp;
+   }
+};
+// 可以
+// class A{};
+// static A tmp;
+// 不可以
+class A;
+static A tmp;
 int main(){
-    int16_t a = 0x1234;
-    int8_t b = *(int8_t*)(&a);
-    cout << sizeof(struct S)  << endl;
-    printf("%#x\n", a);
-    printf("%#x\n", b);
-    int i = 0;
-    i = (i++) + (i++);
-    cout << i << endl;
+   singleton &z = singleton::get_instance();
 }
-
